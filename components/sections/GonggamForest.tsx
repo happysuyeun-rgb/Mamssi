@@ -80,14 +80,14 @@ const benefitCards = [
     icon: "🌳",
   },
   {
-    title: "호혜적 성장",
-    description: "남에게 물을 주면 나의 포인트도 함께 올라요",
-    icon: "💧",
-  },
-  {
     title: "따뜻한 공감",
     description: "익명의 공감 한 방울이 당신의 마음 씨앗을 키워요",
     icon: "🌸",
+  },
+  {
+    title: "안전한 구조",
+    description: "게스트는 읽기만 가능합니다. 로그인 사용자만 작성할 수 있으며, 내 글만 수정·삭제할 수 있습니다. 신고 기능이 있습니다.",
+    icon: "🛡️",
   },
 ];
 
@@ -197,7 +197,7 @@ function AnonymousSeed({ post, onClick }: AnonymousSeedProps) {
   return (
     <motion.button
       className="absolute rounded-full cursor-pointer focus:outline-none 
-                 focus:ring-2 focus:ring-[#E5C185]/50 focus:ring-offset-2 focus:ring-offset-[#244238]"
+                 focus:ring-2 focus:ring-[#E5C185]/50 focus:ring-offset-2 focus:ring-offset-white"
       style={{
         left: `${post.x}%`,
         top: `${post.y}%`,
@@ -274,7 +274,7 @@ export default function GonggamForest() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen bg-gradient-to-b from-[#1D352D] to-[#244238] 
+      className="relative min-h-screen bg-white 
                  flex flex-col items-center justify-center py-20 px-4 overflow-hidden"
     >
       {/* Floating Anonymous Seeds 배경 */}
@@ -292,20 +292,22 @@ export default function GonggamForest() {
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
         {/* Main Title */}
         <motion.h2
-          className="text-[#FCFBF7] text-3xl md:text-4xl lg:text-5xl font-sans font-light leading-relaxed"
+          className="text-[#1D352D] text-3xl md:text-4xl lg:text-5xl font-sans font-semibold leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
           누구에게도 말할 수 없던{" "}
-          <span className="text-[#E5C185] font-medium">진심</span>, 이곳에선{" "}
-          <span className="text-[#E5C185] font-medium">꽃</span>이 됩니다.
+          <span className="text-[#2D6A4F] font-semibold">진심</span>,{" "}
+          <br />
+          이곳에선{" "}
+          <span className="text-[#2D6A4F] font-semibold">꽃</span>이 됩니다.
         </motion.h2>
 
         {/* Description */}
         <motion.p
-          className="text-[#FCFBF7]/80 text-lg md:text-xl font-sans font-light leading-relaxed max-w-2xl mx-auto"
+          className="text-[#1D352D]/80 text-lg md:text-xl font-sans font-light leading-relaxed max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -326,8 +328,8 @@ export default function GonggamForest() {
           {benefitCards.map((card, index) => (
             <motion.div
               key={index}
-              className="bg-[#1D352D]/40 backdrop-blur-sm border border-[#E5C185]/20 
-                         rounded-2xl p-6 hover:border-[#E5C185]/40 transition-all duration-300"
+              className="bg-[#F5F5F0] backdrop-blur-sm border border-[#E5C185]/30 
+                         rounded-2xl p-6 hover:border-[#E5C185]/50 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -338,7 +340,7 @@ export default function GonggamForest() {
               <h3 className="text-[#E5C185] font-sans font-medium text-lg mb-2">
                 {card.title}
               </h3>
-              <p className="text-[#FCFBF7]/70 font-sans text-sm leading-relaxed">
+              <p className="text-[#1D352D]/70 font-sans text-sm leading-relaxed">
                 {card.description}
               </p>
             </motion.div>
