@@ -341,7 +341,7 @@ export default function InsightDashboard() {
   };
 
   return (
-    <section className="relative min-h-screen bg-[#1D352D] py-20 px-4 overflow-hidden">
+    <section className="relative min-h-screen bg-[#1D352D] pt-8 pb-20 px-4 overflow-hidden -mt-[440px]">
       {/* 배경 패턴 */}
       <div className="absolute inset-0 bg-white/5 opacity-30" 
            style={{
@@ -353,17 +353,18 @@ export default function InsightDashboard() {
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Main Title */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-[#FCFBF7] font-sans font-light text-4xl md:text-5xl mb-4">
-            당신의 마음은{" "}
-            <span className="text-[#E5C185] font-medium">데이터</span>가 되고,{" "}
-            <span className="text-[#E5C185] font-medium">아름다운 자산</span>이 됩니다.
+          <h2 className="text-[#FCFBF7] font-sans font-light text-4xl md:text-5xl leading-snug mb-4">
+            기록하고, 모아보고, 소장하세요.
           </h2>
+          <p className="text-[#FCFBF7]/80 font-sans text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            감정 선택과 텍스트 기록, 이미지 첨부(최대 2장), 주간 달력 조회, 감정 성장 단계 시각화를 지원합니다.
+          </p>
         </motion.div>
 
         {/* Summary Stats */}

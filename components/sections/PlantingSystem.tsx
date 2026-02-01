@@ -400,13 +400,13 @@ export default function PlantingSystem() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[400vh] bg-gradient-to-b from-[#244238] to-[#1D352D] 
+      className="relative min-h-[calc(400vh-1300px)] bg-gradient-to-b from-[#244238] to-[#1D352D] 
                  overflow-hidden"
     >
       {/* 진행도 바 */}
       <ProgressBar progress={scrollYProgress} />
 
-      <div className="container mx-auto px-4 py-20">
+      <div className="container mx-auto px-4 pt-20 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* 좌측: Sticky 시각적 요소 */}
           <div className="lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)] flex items-center justify-center">
@@ -431,7 +431,7 @@ export default function PlantingSystem() {
           </div>
 
           {/* 우측: Scrollable 카드들 */}
-          <div className="space-y-8 py-20">
+          <div className="space-y-8 pt-20 pb-8">
             {growthSteps.map((step, index) => (
               <StepCard
                 key={step.id}
