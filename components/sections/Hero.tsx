@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import Seed from "@/components/visuals/Seed";
 
 // 나중에 실제 이미지로 교체될 지점
@@ -8,31 +9,36 @@ const seedImg = "/images/seed.png";
 const sproutImg = "/images/sprout.png";
 
 const mainCopy = "100일 후, 당신의 감정은 꽃이 됩니다.";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const letterVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
+const chars = mainCopy.split("");
+const flowerIndex = mainCopy.indexOf("꽃");
 
 export default function Hero() {
+  const [displayLength, setDisplayLength] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const [startTyping, setStartTyping] = useState(false);
+
+  useEffect(() => {
+    const startTimer = setTimeout(() => setStartTyping(true), 500);
+    return () => clearTimeout(startTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!startTyping) return;
+
+    if (displayLength >= chars.length) {
+      const cursorInterval = setInterval(() => {
+        setShowCursor((prev) => !prev);
+      }, 530);
+      return () => clearInterval(cursorInterval);
+    }
+
+    const timer = setTimeout(() => {
+      setDisplayLength((prev) => prev + 1);
+    }, 80);
+
+    return () => clearTimeout(timer);
+  }, [displayLength, startTyping]);
+
   return (
     <section className="relative min-h-screen bg-[#1D352D] flex flex-col items-center justify-center overflow-hidden">
       {/* 배경 그라데이션 오버레이 (선택사항) */}
@@ -43,23 +49,36 @@ export default function Hero() {
         {/* 씨앗 컴포넌트 */}
         <Seed className="mb-8" />
         
-        {/* 메인 카피 텍스트 */}
-        <motion.h1
-          className="text-[#FCFBF7] text-4xl md:text-5xl lg:text-6xl font-sans font-light text-center leading-relaxed"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {mainCopy.split("").map((char, index) => (
-            <motion.span
-              key={index}
-              variants={letterVariants}
-              className="inline-block"
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
+        {/* 메인 카피 텍스트 - 타이핑 효과 */}
+        <h1 className="text-[#FCFBF7] text-4xl md:text-5xl lg:text-6xl font-sans font-semibold text-center leading-relaxed min-h-[1.2em]">
+          {chars.slice(0, displayLength).map((char, index) => (
+            <span key={index} className="inline-block">
+              {index === flowerIndex ? (
+                <span
+                  className="font-bold"
+                  style={{
+                    background: "linear-gradient(135deg, #FFB6C1 0%, #FF69B4 50%, #FF1493 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {char}
+                </span>
+              ) : (
+                char === " " ? "\u00A0" : char
+              )}
+            </span>
           ))}
-        </motion.h1>
+          {displayLength < chars.length && (
+            <span
+              className={`inline-block w-0.5 h-[0.9em] bg-[#E5C185] ml-0.5 align-middle ${
+                showCursor ? "opacity-100" : "opacity-0"
+              }`}
+              style={{ transition: "opacity 0.1s" }}
+            />
+          )}
+        </h1>
         
         {/* CTA 버튼 */}
         <motion.a
