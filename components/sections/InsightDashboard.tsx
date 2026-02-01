@@ -238,6 +238,7 @@ function DataExportButton({ format, onExport }: DataExportButtonProps) {
         particle.style.left = `${centerX + Math.cos(angle) * radius}px`;
         particle.style.top = `${centerY + Math.sin(angle) * radius}px`;
         document.body.appendChild(particle);
+
         requestAnimationFrame(() => {
           particle.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
           particle.style.left = `${centerX}px`;
@@ -247,6 +248,7 @@ function DataExportButton({ format, onExport }: DataExportButtonProps) {
         });
         return particle;
       });
+
       setTimeout(() => {
         particles.forEach((p) => p.remove());
         setIsExporting(false);
