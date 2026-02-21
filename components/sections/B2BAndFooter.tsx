@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
+import Link from "next/link";
 import FaqItem from "@/components/cards/FaqItem";
 
 const faqData = [
@@ -202,6 +203,29 @@ export default function B2BAndFooter() {
               <Mail size={16} />
               <span>이메일 문의</span>
             </motion.button>
+          </motion.div>
+
+          {/* 개인정보처리방침·이용약관 */}
+          <motion.div
+            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 mb-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Link
+              href="/privacy"
+              className="text-[#FCFBF7]/80 font-sans text-sm hover:text-[#E5C185] hover:underline transition-colors"
+            >
+              개인정보처리방침
+            </Link>
+            <span className="text-[#FCFBF7]/40">|</span>
+            <Link
+              href="/terms"
+              className="text-[#FCFBF7]/80 font-sans text-sm hover:text-[#E5C185] hover:underline transition-colors"
+            >
+              이용약관
+            </Link>
           </motion.div>
 
           {/* Copyright */}
