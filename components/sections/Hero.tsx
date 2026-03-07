@@ -81,10 +81,9 @@ export default function Hero() {
         </h1>
         
         {/* CTA 버튼 */}
-        <motion.a
-          href="https://mamssi-app.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.button
+          type="button"
+          onClick={() => alert("스토어 등록 준비중입니다.")}
           className="px-8 py-4 border-2 border-[#E5C185] text-[#E5C185] font-sans font-medium rounded-full 
                      transition-all duration-300 hover:bg-[#E5C185] hover:text-[#1D352D] 
                      backdrop-blur-sm hover:shadow-lg hover:shadow-[#E5C185]/20"
@@ -95,7 +94,7 @@ export default function Hero() {
           whileTap={{ scale: 0.95 }}
         >
           내 마음의 씨앗 심기
-        </motion.a>
+        </motion.button>
       </div>
       
       {/* 스크롤 인디케이터 (선택사항) */}
